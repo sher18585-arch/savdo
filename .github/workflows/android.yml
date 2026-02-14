@@ -1,5 +1,4 @@
 name: Android APK Build
-
 on: [push]
 
 jobs:
@@ -14,12 +13,16 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build with Gradle
-        # Бу ерда биз gradlew ўрнига тизимдаги gradle'дан фойдаланамиз
-        run: gradle assembleDebug
+      - name: Initialize Gradle Wrapper
+        run: gradle wrapper
+
+      - name: Build APK
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Savdo-App-APK
+          name: MiniSavdo-APK
           path: app/build/outputs/apk/debug/*.apk
