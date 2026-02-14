@@ -13,16 +13,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Initialize Gradle Wrapper
-        run: gradle wrapper
-
-      - name: Build APK
-        run: |
-          chmod +x gradlew
-          ./gradlew assembleDebug
+      - name: Build APK Directly
+        run: gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: MiniSavdo-APK
+          name: MiniSavdo-App
           path: app/build/outputs/apk/debug/*.apk
