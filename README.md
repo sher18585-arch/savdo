@@ -1,0 +1,2 @@
+# savdo
+ombor uchun
